@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuram Coaching</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #1a2c1a;
+            --primary-green: #4a7c59;
+            --accent-green: #6b9d7a;
+            --light-bg: #f8f9f7;
+            --text-dark: #2d2d2d;
+            --text-light: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-dark);
+            border-radius: 4px;
+        }
+
+        /* Header */
+        .header-top {
+            background: var(--primary-dark);
+            color: var(--text-light);
+            padding: 12px 5%;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .site-name {
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .location {
+            opacity: 0.8;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 1.2rem 5%;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-green);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, rgb(45, 74, 45) 100%);
+            color: var(--text-light);
+            padding: 8rem 5% 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="1" fill="rgb(45,74,45)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            line-height: 1.8;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        /* Hero Image */
+        .hero-image {
+            background: var(--primary-dark);
+            padding: 0 5%;
+            animation: fadeIn 1s ease-out 0.3s backwards;
+        }
+
+        .hero-image-container {
+            background-image: url("fougere.jpg");
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            box-shadow: 
+                inset 0 60px 60px rgba(0, 0, 0, 0.3),
+                0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image-container::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
+        }
+
+        /* Services Section */
+        .services {
+            background: var(--accent-green);
+            color: var(--text-light);
+            padding: 5rem 5%;
+        }
+
+        .services h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: 600;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding-bottom: 2rem;
+            padding-top: 1rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+            animation: fadeInUp 0.6s ease-out backwards;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .service-item:nth-child(1) { animation-delay: 0.1s; }
+        .service-item:nth-child(2) { animation-delay: 0.2s; }
+        .service-item:nth-child(3) { animation-delay: 0.3s; }
+        .service-item:nth-child(4) { animation-delay: 0.4s; }
+        .service-item:nth-child(5) { animation-delay: 0.5s; }
+        .service-item:nth-child(6) { animation-delay: 0.6s; }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-item::before {
+            content: '✦';
+            display: block;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Features Section */
+        .features {
+            background: var(--light-bg);
+            padding: 6rem 5%;
+        }
+
+        .feature {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto 6rem;
+            align-items: center;
+        }
+
+        .feature:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature:nth-child(even) {
+            direction: rtl;
+        }
+
+        .feature:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .feature-image {
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .feature-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-image.img1 {
+            background-image: url("Arbre devant le couche du soleil.jpg");
+        }
+
+        .feature-image.img2 {
+            background-image: url("Feu d'artifice 4 juillet.jpg");
+        }
+
+        .feature-image.img3 {
+            background-image: url("eau.jpg");
+        }
+
+        .feature-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .feature-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+            opacity: 0.9;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--primary-dark);
+            color: var(--text-light);
+            padding: 6rem 5%;
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            opacity: 0.95;
+        }
+
+        .about-image {
+            background-image: url("vue 2 2 2.jpg");
+            background-size: 107%;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 500px;
+            width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Pricing Section */
+        .pricing {
+            background: linear-gradient(135deg, #1a1410 0%, #2d2416 100%);
+            color: var(--text-light);
+            padding: 6rem 5%;
+            text-align: center;
+        }
+
+        .pricing h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .price-box {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 600px;
+            margin: 0 auto;
+            transition: var(--transition);
+        }
+
+        .price-box:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .price {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #d4af37;
+            margin: 1.5rem 0;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .price-details {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--primary-green);
+            color: var(--text-light);
+            padding: 6rem 5%;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 3rem;
+            font-weight: 600;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem 3rem;
+            border-radius: 15px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .contact-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        .contact-item a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .contact-item a:hover {
+            color: #d4af37;
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .nav-menu {
+                gap: 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .feature,
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .feature:nth-child(even) {
+                direction: ltr;
+            }
+
+            .hero {
+                padding: 5rem 5% 4rem;
+            }
+
+            .hero-image-container {
+                height: 350px;
+            }
+
+            .feature-image,
+            .about-image {
+                height: 300px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+
+            .contact-item {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .header-top {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                gap: 1rem;
+                padding: 1rem 5%;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Top -->
+    <div class="header-top">
+        <div class="site-name">Futuram coaching</div>
+        <div class="location">Curis au mont d'or</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-menu">
+            <a href="#accueil">Accueil</a>
+            <a href="#nos_prestations">Prestations</a>
+            <a href="#a_propos">À propos</a>
+            <a href="#tarifs">Tarifs</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <div class="hero-content">
+            <h1>FUTURAM COACHING</h1>
+            <p>
+                Futuram Coaching est un cabinet spécialisé dans l'hypnose ericksonnienne.
+                <br> Il vous accompagne dans la réalisation de vos objectifs de vie et dans votre recherche de bien être.
+                Contactez-nous pour en savoir plus.
+            </p>
+        </div>
+    </section>
+
+    <!-- Hero Image -->
+    <div">
+        <div class="hero-image-container"></div>
+    </div>
+
+    <!-- Services Section -->
+    <section class="services" id="nos_prestations">
+        <h2>Nos prestations</h2>
+        <div class="services-grid">
+            <div class="service-item">Dépression</div>
+            <div class="service-item">Arrêt du tabac</div>
+            <div class="service-item">Perte de poids</div>
+            <div class="service-item">Troubles du sommeil</div>
+            <div class="service-item">Gestion du stress et des émotions</div>
+            <div class="service-item">Préparation aux concours et réussite scolaire</div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="feature">
+            <div class="feature-image img1"></div>
+            <div class="feature-content">
+                <h2>Atteignez vos objectifs</h2>
+                <p>Dans un monde en constante évolution, nous nous adressons aux personnes en recherche de sens, d'équilibre et d'harmonie.</p>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="feature-image img2"></div>
+            <div class="feature-content">
+                <h2>Qu'est ce que l'hypnose ericksonienne ?</h2>
+                <p>
+                    L'hypnose ericksonienne est issue de la pratique du docteur Milton Erickson.
+                    L'hypnose thérapeutique est une discipline qui permet d'accéder au réservoir de ressources inconscientes de chaque individu.
+                    Ainsi, grâce aux nombreux outils à disposition du praticien, ce dernier devient un accompagnateur dans le processus du changement et de l'apprentissage souhaité.
+                    Les champs d'application de l'hypnose thérapeutique sont très vastes et souvent surprenants.
+                </p>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="feature-image img3"></div>
+            <div class="feature-content">
+                <h2>Comment fonctionne l'hypnose ?</h2>
+                <p>
+                    L'hypnose permet de placer le patient dans un état de transe (transe hypnotique) au cours de laquelle il pourra avoir plus facilement accès à son inconscient.
+                    La transe hypnotique est simplement un état modifié de conscience, à mi-chemin entre sommeil et méditation.
+                    En accédant à l'inconscient, l'hypnose peut aider à soigner de nombreux troubles. Les plus souvent indiqués sont les angoisses et les phobies, ainsi que les addictions (alcool, tabac, jeu, etc...). Mais le champ des indications est bien plus vaste.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="a_propos">
+        <div class="about-container">
+            <div class="about-content">
+                <h2>À propos du thérapeute</h2>
+                <p>
+                    Futuram Coaching est un cabinet spécialisé en hypnose ericksonienne et a été créé pour proposer des programmes personnalisés à toute personne désirant vivre en harmonie avec son corps et son esprit de façon durable.
+                    <br> Muriel Mazoyer, hypnothérapeute, est certifiée en Hypnose Ericksonienne par l'Académie Européenne d'Hypnose. Elle développe des programmes sur-mesure en fonction de chaque besoin.
+                </p>
+            </div>
+            <div class="about-image"></div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="tarifs">
+        <h2>Tarifs</h2>
+        <div class="price-box">
+            <div class="price">60€</div>
+            <div class="price-details">
+                la séance
+                <br><br>
+                L'hypnothérapie est une thérapie dite brève. <br> Généralement, 1 à 3 séances suffisent.
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>Contactez-nous</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <h3>Email</h3>
+                <a href="mailto:mum.lyon@laposte.net">mum.lyon@laposte.net</a>
+            </div>
+            <div class="contact-item">
+                <h3>Téléphone</h3>
+                <a href="tel:+33679999521">06 79 99 95 21</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
