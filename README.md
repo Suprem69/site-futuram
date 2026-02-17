@@ -4,7 +4,7 @@ Site vitrine pour une activité de coaching / hypnose ericksonienne.
 Le projet présente les prestations, la philosophie du cabinet, les tarifs et les informations de contact.
 
 ## Visualier le site en ligne 
-https://raw.githack.com/Suprem69/site-futuram/main/index.html
+https://raw.githack.com/CypMas/site-futuram/main/index.html
 
 
 ## Ce que contient ce dossier
