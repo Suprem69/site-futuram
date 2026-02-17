@@ -342,13 +342,15 @@
 
         .about-image {
             background-image: url("vue 2 2 2.jpg");
-            background-size: 107%;
+            background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
-            height: 500px;
-            width: 500px;
+            width: 100%;
+            max-width: 500px;
+            aspect-ratio: 1 / 1;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            justify-self: end;
         }
 
         /* Pricing Section */
@@ -502,6 +504,12 @@
             .feature-image,
             .about-image {
                 height: 300px;
+            }
+
+            .about-image {
+                width: 100%;
+                max-width: 100%;
+                justify-self: center;
             }
 
             .contact-info {
